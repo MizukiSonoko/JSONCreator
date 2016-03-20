@@ -1,7 +1,36 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+	<title>Json creator</title>
+	
+	<!-- 見栄えをよくするため導入 --> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+<style>
+.resultArea { width: 940px; margin: 0 auto;}
+.dummy {
+	background-color: red`
+	width: 54px;
+	float: left;
+  display: inline;
+  margin-left: 20px;
+}
+</style>
 </head>
 <body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-3">Json creator</h1>
+			<hr class="m-y-2">
+			<fieldset class="form-group">
+    		<label for="jsonTextArea">JsonArea</label>
+    		<textarea class="form-control" id="jsonTextArea" rows="3"></textarea>
+  		</fieldset>
+		</div>
+		<div class="resultArea"></div>
+	</div>
+	<!-- jQueryは使うよ -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+	<script  type="text/javascript" src="jsonCreator.js"></script>
 </body>
 </html>
