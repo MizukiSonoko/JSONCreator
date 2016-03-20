@@ -101,11 +101,43 @@ $(document).ready(function(){
 		}
 	}
 
+	function trans(obj, path, val){
+        path = path || '';
+        obj  = obj || {};
+        
+				var keys = path.split('.');
+        var value = obj;
+
+				path = [];
+				for (var i = 0; i < keys.length; i ++) {
+
+					// List
+					if(keys[i].match(/^.+\[\d+\]$/)){
+						name = keys[i].split("[")[0];
+						pos =	keys[i].match(/.+\[(\d+)\]/)[1];
+						path.push(name);
+						path.push(pos);
+						if( i !== keys.length - 1){
+							value = value[name][pos];
+						}
+					// Dict
+					} else {
+						path.push(keys[i]);
+						if( i !== keys.length - 1){
+							value = value[keys[i]];
+						}
+					}
+        }
+
+				for(var i = 0; i < path.length-1; i++){
+					obj = obj[path[i]];
+				}
+				obj[path[path.length-1]] = val;
+	}
+
 	function change(input){
 		return function(){
-			console.log($(this).attr('id'));
-			console.log(json);
-			eval("json"+$(this).attr('id') +' = "'+$(this).val()+'"');
+			trans(json, $(this).attr('id').substr(0), $(this).val());
 			$("#jsonTextArea").val(JSON.stringify(json, null, "    "));
 		}
 	}
