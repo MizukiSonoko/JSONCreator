@@ -5,10 +5,8 @@ $(document).ready(function(){
 		$(this).bind('keyup', creator(this));
 	});
 
-	$(".value").each(function(){
-		$(this).bind('keyup', change(this));
-	});
 
+ 	$(document).on("keyup","#value",change(this));
 
 	var res = $('.resultArea');
 	var json = null;
@@ -22,7 +20,15 @@ $(document).ready(function(){
 		for(i=0;i<indent;i++){
 			 str += '<div class="dummy">　　</div>';
 		}
-		res.append( str + '<div class="key">'+key+'</div><input type="text" class="value" value="'+value+'" >');
+		res.append( str + '<div class="key">'+key+'</div><input type="text" class="value" id="value" value="'+value+'" >');
+	}
+
+	function printIndex(indent,obj){
+	  str = '<div class="first">　　</div>';
+		for(i=0;i<indent;i++){
+			 str += '<div class="dummy">　　</div>';
+		}
+		res.append( str + '<div class="value" >'+obj+'</div>');
 	}
 
 	function print(indent,obj){
@@ -37,7 +43,7 @@ $(document).ready(function(){
 		if( obj instanceof Array){
 			$.each(obj,function(p, val){
 				if(hasChild(val)){
-					print(indent, p);
+					printIndex(indent, p);
 					execution(indent+1, val);			
 				}else{
 					print(indent+1,val);
@@ -72,7 +78,6 @@ $(document).ready(function(){
 					}catch(e){
 						return;
 					}
-					console.log(json);
 					execution( 0, json);
 					$('.dummy').css({
     				float: "left", 
@@ -94,8 +99,11 @@ $(document).ready(function(){
 		}
 	}
 
-	function change(form){
-		
+	function change(input){
+		return function(){
+			console.log("=======");
+			console.log($(this).val());	
+		}
 	}
 
 });
