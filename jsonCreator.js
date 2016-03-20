@@ -77,8 +77,12 @@ $(document).ready(function(){
 					try{
 						json = JSON.parse(str);
 					}catch(e){
+						$('#status').empty();
+						$('#status').append('<div class="alert alert-danger" role="alert"><strong>パースエラー!</strong>形式に間違いがあります!</div>');
 						return;
 					}
+					
+					$('#status').remove();
 
 					execution( 0, json, "");
 					$('.dummy').css({
@@ -101,15 +105,19 @@ $(document).ready(function(){
 		}
 	}
 
-	function trans(obj, path, val){
+	function transform(obj, path, val){
         path = path || '';
         obj  = obj || {};
         
 				var keys = path.split('.');
         var value = obj;
 
+				if( keys[0] === ""){
+					keys.shift();	
+				}
+
 				path = [];
-				for (var i = 0; i < keys.length; i ++) {
+				for (var i = 0; i < keys.length; i++) {
 
 					// List
 					if(keys[i].match(/^.+\[\d+\]$/)){
@@ -137,7 +145,7 @@ $(document).ready(function(){
 
 	function change(input){
 		return function(){
-			trans(json, $(this).attr('id').substr(0), $(this).val());
+			transform(json, $(this).attr('id').substr(0), $(this).val());
 			$("#jsonTextArea").val(JSON.stringify(json, null, "    "));
 		}
 	}
