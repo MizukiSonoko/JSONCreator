@@ -43,10 +43,11 @@ $(document).ready(function(){
 		if( obj instanceof Array){
 			$.each(obj,function(p, val){
 				if(hasChild(val)){
+					console.log(route);
 					printIndex(indent, p);
 					execution(indent+1, val, route+"["+p+"]");			
 				}else{
-					print(indent+1,val, route);
+					print(indent+1,val, route+"["+p+"]");
 				}
 			});
 		}	else if(obj instanceof Object){
