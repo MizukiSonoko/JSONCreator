@@ -47,7 +47,7 @@ $(document).ready(function(){
 					printIndex(indent, p);
 					execution(indent+1, val, route+"["+p+"]");			
 				}else{
-					print(indent+1,val, route+"["+p+"]");
+					printKeyValue(indent,p,val, route+"["+p+"]");
 				}
 			});
 		}	else if(obj instanceof Object){
