@@ -86,18 +86,9 @@ $(document).ready(function(){
 					$('#status').remove();
 
 					execution( 0, json, "");
-					$('.dummy').css({
-    				float: "left", 
-    				width: "75px",
-					});
-					$('.value').css({
-						float: "left", 
-    				width: "75px",
-					});
-					$('.key').css({
-						float: "left", 
-    				width: "75px",
-					});
+					addCss($('.dummy'));
+					addCss($('.value'));
+					addCss($('.key'));
 					$('.first').css({
 						"margin-left": 0,
 						clear: "left"
@@ -142,6 +133,13 @@ $(document).ready(function(){
 					obj = obj[path[i]];
 				}
 				obj[path[path.length-1]] = val;
+	}
+
+	function addCss(obj) {
+		obj.css({
+			float: "left", 
+			width: "75px",
+		});
 	}
 
 	function change(input){
