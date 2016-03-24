@@ -39,6 +39,14 @@ $(document).ready(function(){
 		res.append( str + '<input type="text" class="value" id="'+route+'" value="'+obj+'">');
 	}
 
+	function appendButton(indent, key, route){
+	  str = '<div class="first">　　</div>';
+		for(i=0;i<indent;i++){
+			 str += '<div class="dummy">　　</div>';
+		}
+		res.append( str + '<div class="key">'+key+'</div><input type="button" class="btn" value="Add" id="'+route+'" >');
+	}
+
 	function execution( indent, obj, route){
 		if( obj instanceof Array){
 			$.each(obj,function(p, val){
@@ -50,6 +58,8 @@ $(document).ready(function(){
 					printKeyValue(indent,p,val, route+"["+p+"]");
 				}
 			});
+			appendButton( indent, obj.length, route+"["+obj.length+"]");
+
 		}	else if(obj instanceof Object){
 			for( key in obj){
 				if(hasChild(obj[key])){
@@ -59,6 +69,7 @@ $(document).ready(function(){
 					printKeyValue(indent, key, obj[key], route+"."+key);
 				}
 			}
+			appendButton( indent, "key", route+"["+obj.length+"]");
 		} else{
 			print(indent, obj, route);
 		}
@@ -86,6 +97,7 @@ $(document).ready(function(){
 					$('#status').remove();
 
 					execution( 0, json, "");
+					addCss($('.btn'));
 					addCss($('.dummy'));
 					addCss($('.value'));
 					addCss($('.key'));
@@ -120,6 +132,7 @@ $(document).ready(function(){
 						if( i !== keys.length - 1){
 							value = value[name][pos];
 						}
+						
 					// Dict
 					} else {
 						path.push(keys[i]);
