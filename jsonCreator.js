@@ -59,7 +59,6 @@ $(document).ready(function(){
 				}
 			});
 			appendButton( indent, obj.length, route+"["+obj.length+"]");
-
 		}	else if(obj instanceof Object){
 			for( key in obj){
 				if(hasChild(obj[key])){
@@ -99,7 +98,10 @@ $(document).ready(function(){
 					execution( 0, json, "");
 					addCss($('.btn'));
 					addCss($('.dummy'));
-					addCss($('.value'));
+					$('.value').css({
+						float: "left", 
+						width: "200px",
+					});
 					addCss($('.key'));
 					$('.first').css({
 						"margin-left": 0,
