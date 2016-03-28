@@ -84,6 +84,7 @@ $(document).ready(function(){
 					$('.value').remove();
 					$('.key').remove();
 					$('.first').remove();
+					$('.btn').remove();
 
 					try{
 						json = JSON.parse(str);
