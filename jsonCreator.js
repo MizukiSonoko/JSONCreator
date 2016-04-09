@@ -8,6 +8,10 @@ $(document).ready(function(){
 
  	$(document).on("keyup",".value",change(this));
 
+  $(document).on("click","input:button",function(){	
+		console.log($(this).attr("id"));	
+	});
+
 	var res = $('.resultArea');
 	var json = null;
 
@@ -47,6 +51,7 @@ $(document).ready(function(){
 		res.append( str + '<div class="key">'+key+'</div><input type="button" class="btn" value="Add" id="'+route+'" >');
 	}
 
+	
 	function execution( indent, obj, route){
 		if( obj instanceof Array){
 			$.each(obj,function(p, val){
@@ -68,7 +73,7 @@ $(document).ready(function(){
 					printKeyValue(indent, key, obj[key], route+"."+key);
 				}
 			}
-			appendButton( indent, "key", route+"["+obj.length+"]");
+			appendButton( indent, "key", route+".");
 		} else{
 			print(indent, obj, route);
 		}
@@ -96,7 +101,7 @@ $(document).ready(function(){
 					
 					$('#status').remove();
 
-					execution( 0, json, "");
+					execution( 0, json, "root");
 					addCss($('.btn'));
 					addCss($('.dummy'));
 					$('.value').css({
