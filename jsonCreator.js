@@ -10,6 +10,7 @@ $(document).ready(function(){
 
   $(document).on("click","input:button",function(){	
 		console.log($(this).attr("id"));	
+		res.append('<br><input type="text"><input type="text" class="value" id="'+$(this).attr("id")+'" value="" >');
 	});
 
 	var res = $('.resultArea');
